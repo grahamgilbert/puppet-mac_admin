@@ -17,14 +17,14 @@
 								<key>DidSeeCloudSetup</key>
 								<true/>
 								<key>LastSeenCloudProductVersion</key>
-								<string>10.8.2</string>
+								<string>10.8.3</string>
 							</dict>
 						</dict>
 					</array>
 				</dict>
 			</dict>
 			<key>PayloadDisplayName</key>
-			<string>MCXToProfile: (com.apple.SetupAssistant)</string>
+			<string>Disable iCloud Assistant</string>
 			<key>PayloadEnabled</key>
 			<true/>
 			<key>PayloadIdentifier</key>
@@ -41,7 +41,7 @@
 	<string>Included custom settings:
 com.apple.SetupAssistant</string>
 	<key>PayloadDisplayName</key>
-	<string>MCXToProfile: com.apple.SetupAssistant, </string>
+	<string>Disable iCloud Assistant</string>
 	<key>PayloadIdentifier</key>
 	<string>com.grahamgilbert.icloud_assistant</string>
 	<key>PayloadOrganization</key>

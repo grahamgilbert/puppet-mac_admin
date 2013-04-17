@@ -5,7 +5,17 @@
 
 class mac_admin::remove_default_dock(
     ) inherits mac_admin::params {
-    if !defined(File["/System/Library/User Template/Non_localized/Library/LaunchAgents"]){
+    
+    if !defined(File["/System/Library/User Template/Non_localized/Library"]){
+            file { "/System/Library/User Template/Non_localized/Library/":
+                ensure => directory,
+                owner => root,
+                group => wheel,
+                mode => 600,
+            }
+        }
+	
+	if !defined(File["/System/Library/User Template/Non_localized/Library/LaunchAgents"]){
             file { "/System/Library/User Template/Non_localized/Library/LaunchAgents/":
                 ensure => directory,
                 owner => root,
@@ -36,11 +46,11 @@ class mac_admin::remove_default_dock(
         mode => 755,
     }
         
-        file { "/System/Library/User Template/Non_localized/Library/LaunchAgents/com.grahamgilbert.remove_default_dock.plist":
+	file { "/System/Library/User Template/Non_localized/Library/LaunchAgents/com.grahamgilbert.remove_default_dock.plist":
         ensure => present,
         source => "puppet:///modules/mac_admin/remove_default_dock/com.grahamgilbert.remove_default_dock.plist",
         owner => root,
         group => wheel,
         mode => 644,
-        }    
+    }    
 }

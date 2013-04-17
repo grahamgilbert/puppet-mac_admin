@@ -22,7 +22,7 @@
 				</dict>
 			</dict>
 			<key>PayloadDisplayName</key>
-			<string>MCXToProfile: (com.apple.loginwindow)</string>
+			<string>Show Hostname at Login Window</string>
 			<key>PayloadEnabled</key>
 			<true/>
 			<key>PayloadIdentifier</key>
@@ -41,7 +41,7 @@ com.apple.loginwindow
 
 Git revision: 6c7f6a207a</string>
 	<key>PayloadDisplayName</key>
-	<string>MCXToProfile: com.apple.loginwindow, </string>
+	<string>Show Hostname at Login Window</string>
 	<key>PayloadIdentifier</key>
 	<string>com.grahamgilbert.login_window_hostname</string>
 	<key>PayloadOrganization</key>
