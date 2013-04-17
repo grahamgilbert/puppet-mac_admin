@@ -9,7 +9,6 @@ class mac_admin::params{
         $namerurl = "http://macnamer"
         $crypturl = "http://crypt"
         $default_group = "everyone"
-        $authorization_ensure = "present"
     }else{
         fail("unsupported operating system")
     }

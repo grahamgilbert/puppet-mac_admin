@@ -12,17 +12,15 @@
 #
 #  class { 'mac_admin::authorization::setup':
 #    group  => "everyone",
-#    ensure => "present",
 #  }
 #
 
 class mac_admin::authorization::setup(
     $group = $mac_admin::params::default_group,
-    $ensure = $mac_admin::params::authorization_ensure,
     ) inherits mac_admin::params {
 
     macauthorization { 'system.preferences':
-      ensure    => $ensure,
+      ensure    => 'present',
       comment   => "Changed by Puppet",
       group     => $group,
       auth_type => 'right',

@@ -12,20 +12,17 @@
 #
 #  class { 'mac_admin::authorization::date_time':
 #    group  => "everyone",
-#    ensure => "present",
 #  }
-
 #
 
 class mac_admin::authorization::network(
     $group = $mac_admin::params::default_group,
-    $ensure = $mac_admin::params::authorization_ensure,
     ) inherits mac_admin::params {
 		
 	include mac_admin::authorization::setup
 	
     macauthorization { 'system.preferences.network':
-        ensure     => $ensure,
+        ensure     => 'present',
         allow_root => 'true',
         auth_class => 'user',
         auth_type  => 'right',
@@ -36,7 +33,7 @@ class mac_admin::authorization::network(
     
     #check what the default is, we ought to be putting this back how it was
     macauthorization { 'system.services.systemconfiguration.network':
-        ensure     => $ensure,
+        ensure     => 'present',
         auth_class => 'rule',
         auth_type  => 'right',
         comment    => 'For making change to network configuration via System Configuration. Changed by Puppet',
