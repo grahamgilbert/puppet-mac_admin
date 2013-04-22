@@ -38,6 +38,12 @@ class mac_admin::sus(
             }
         }
     }
+	
+    if ! defined(File['/var/lib/puppet/mac_admin']) {
+        file { '/var/lib/puppet/mac_admin':
+            ensure => directory,
+        }
+    }
     
     # If the sus_url has been set, create and install the profile
     if $sus_url != false {

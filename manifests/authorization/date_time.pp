@@ -13,7 +13,6 @@
 #  class { 'mac_admin::authorization::date_time':
 #    group  => "everyone",
 #  }
-
 #
 
 class mac_admin::authorization::date_time(
