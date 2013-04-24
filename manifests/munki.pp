@@ -40,36 +40,36 @@ class mac_admin::munki(
     $bootstrap = $mac_admin::params::bootstrap,
     $install_apple_updates = $mac_admin::params::install_apple_updates,
     ) inherits mac_admin::params {
-    
-    ## Install the latest Munki 
-    package { "munki_tools":
+
+    ## Install the latest Munki
+    package { 'munki_tools':
         ensure   => installed,
         provider => pkgdmg,
-        source   => "https://munki.googlecode.com/files/munkitools-0.8.4.1770.0.dmg",
+        source   => 'https://munki.googlecode.com/files/munkitools-0.8.4.1770.0.dmg',
     }
-    
+
     if ! defined(File['/var/lib/puppet/mac_admin']) {
         file { '/var/lib/puppet/mac_admin':
             ensure => directory,
         }
     }
-    
+
     ##Write out the contents of the template to a mobileconfig file
-    
+
     file {'/var/lib/puppet/mac_admin/com.grahamgilbert.munkiprefs.mobileconfig':
-        content => template("mac_admin/com.grahamgilbert.munkiprefs.erb"),
+        content => template('mac_admin/com.grahamgilbert.munkiprefs.erb'),
         owner   => 0,
         group   => 0,
-        mode    => 0700,
+        mode    => '0700',
     }
-    
+
     ##Install the profile
     mac_profiles_handler::manage { 'com.grahamgilbert.munkiprefs':
         ensure      => present,
-        file_source => "/var/lib/puppet/mac_admin/com.grahamgilbert.munkiprefs.mobileconfig",
-        require     => File["/var/lib/puppet/mac_admin/com.grahamgilbert.munkiprefs.mobileconfig"]
-    }  
-    
+        file_source => '/var/lib/puppet/mac_admin/com.grahamgilbert.munkiprefs.mobileconfig',
+        require     => File['/var/lib/puppet/mac_admin/com.grahamgilbert.munkiprefs.mobileconfig']
+    }
+
     ##If we need to, touch the bootstrap file
     if ($bootstrap==true){
         exec {'munki-check':

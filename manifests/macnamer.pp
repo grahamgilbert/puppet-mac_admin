@@ -23,20 +23,20 @@ class mac_admin::macnamer(
         ensure => directory,
       }
     }
-    
+
     ##Write out the contents of the template to a mobileconfig file (this needs to be cleaned up)
-    
+
     file {'/var/lib/puppet/mac_admin/com.grahamgilbert.macnamer.mobileconfig':
-        content => template("mac_admin/com.grahamgilbert.macnamer.erb"),
-        owner => 0,
-        group => 0,
-        mode => 0700,
+        content => template('mac_admin/com.grahamgilbert.macnamer.erb'),
+        owner   => 0,
+        group   => 0,
+        mode    => '0700',
     }
-    
+
     ##Install the profile
     mac_profiles_handler::manage { 'com.grahamgilbert.macnamer':
-        ensure  => present,
-        file_source => "/var/lib/puppet/mac_admin/com.grahamgilbert.macnamer.mobileconfig",
-        require => File["/var/lib/puppet/mac_admin/com.grahamgilbert.macnamer.mobileconfig"]
-    }  
+        ensure      => present,
+        file_source => '/var/lib/puppet/mac_admin/com.grahamgilbert.macnamer.mobileconfig',
+        require     => File['/var/lib/puppet/mac_admin/com.grahamgilbert.macnamer.mobileconfig']
+    }
 }

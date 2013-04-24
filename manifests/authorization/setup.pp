@@ -21,7 +21,7 @@ class mac_admin::authorization::setup(
 
     macauthorization { 'system.preferences':
       ensure    => 'present',
-      comment   => "Changed by Puppet",
+      comment   => 'Changed by Puppet',
       group     => $group,
       auth_type => 'right',
     }

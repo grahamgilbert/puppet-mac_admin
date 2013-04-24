@@ -19,8 +19,8 @@ class mac_admin::authorization::date_time(
     $group = $mac_admin::params::default_group,
     ) inherits mac_admin::params {
 
-	include mac_admin::authorization::setup
-	
+    include mac_admin::authorization::setup
+
     macauthorization { 'system.preferences.datetime':
       ensure     => 'present',
       allow_root => 'true',

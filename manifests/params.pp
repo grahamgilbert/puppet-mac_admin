@@ -1,15 +1,15 @@
 class mac_admin::params{
-    if ($::operatingsystem=="Darwin") and ($::macosx_productversion_major >= "10.7"){
-        $repourl = "http://munki"
+    if ($::operatingsystem=='Darwin') and ($::macosx_productversion_major >= '10.7'){
+        $repourl = 'http://munki'
         $clientidentifier = $::sp_serial_number
         $suppressautoinstall = false
         $install_apple_updates = false
         $suppress_stop = false
         $bootstrap = false
-        $namerurl = "http://macnamer"
-        $crypturl = "http://crypt"
-        $default_group = "everyone"
+        $namerurl = 'http://macnamer'
+        $crypturl = 'http://crypt'
+        $default_group = 'everyone'
     }else{
-        fail("unsupported operating system")
+        fail('unsupported operating system')
     }
 }

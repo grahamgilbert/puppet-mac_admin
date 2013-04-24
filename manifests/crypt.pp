@@ -23,19 +23,19 @@ class mac_admin::crypt(
         ensure => directory,
       }
     }
-    
+
     ##Write out the contents of the template to a mobileconfig file (this needs to be cleaned up)
     file {'/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig':
-        content => template("mac_admin/com.grahamgilbert.crypt.erb"),
-        owner => 0,
-        group => 0,
-        mode => 0700,
+        content => template('mac_admin/com.grahamgilbert.crypt.erb'),
+        owner   => 0,
+        group   => 0,
+        mode    => '0700',
     }
-    
+
     ##Install the profile
     mac_profiles_handler::manage { 'com.grahamgilbert.crypt':
-        ensure  => present,
-        file_source => "/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig",
-        require => File["/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig"]
-    }  
+        ensure      => present,
+        file_source => '/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig',
+        require     => File['/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig']
+    }
 }

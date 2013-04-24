@@ -18,9 +18,9 @@
 class mac_admin::authorization::network(
     $group = $mac_admin::params::default_group,
     ) inherits mac_admin::params {
-		
-	include mac_admin::authorization::setup
-	
+
+    include mac_admin::authorization::setup
+
     macauthorization { 'system.preferences.network':
         ensure     => 'present',
         allow_root => 'true',
@@ -30,14 +30,13 @@ class mac_admin::authorization::network(
         group      => $group,
         shared     => 'true',
     }
-    
+
     #check what the default is, we ought to be putting this back how it was
     macauthorization { 'system.services.systemconfiguration.network':
         ensure     => 'present',
         auth_class => 'rule',
         auth_type  => 'right',
-        comment    => 'For making change to network configuration via System Configuration. Changed by Puppet',
+        comment    => 'Changed by Puppet',
         rule       => 'allow',
     }
-    
 }

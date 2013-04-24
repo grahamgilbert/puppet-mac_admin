@@ -11,7 +11,7 @@ class mac_admin::icloud_assistant(
 ) inherits mac_admin::params {
     ##Install the profile
     mac_profiles_handler::manage { 'com.grahamgilbert.icloud_assistant':
-        ensure  => present,
-        file_source => "puppet:///modules/mac_admin/icloud_assistant/com.grahamgilbert.icloud_assistant.mobileconfig",
-    }  
+        ensure      => present,
+        file_source => 'puppet:///modules/mac_admin/icloud_assistant/com.grahamgilbert.icloud_assistant.mobileconfig',
+    }
 }
