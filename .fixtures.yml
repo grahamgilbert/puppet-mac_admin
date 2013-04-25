@@ -1,0 +1,6 @@
+---
+fixtures:
+  repositories:
+    mac_profiles_handler: git://github.com/rcoleman/rcoleman-mac_profiles_handler.git
+  symlinks:
+    mac_admin: "#{source_dir}"
