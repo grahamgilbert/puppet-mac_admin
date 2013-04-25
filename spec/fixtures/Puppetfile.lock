@@ -1,0 +1,8 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    rcoleman/mac_profiles_handler (0.2.0)
+
+DEPENDENCIES
+  rcoleman/mac_profiles_handler (>= 0)
+
