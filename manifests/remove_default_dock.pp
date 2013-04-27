@@ -10,4 +10,9 @@ class mac_admin::remove_default_dock(
     file {'/Library/Preferences/com.apple.dockfixup.plist':
         ensure => absent,
     }
+    
+    # Clear up the old plist if someone is upgrading
+    file { '/System/Library/User Template/Non_localized/Library/LaunchAgents/com.grahamgilbert.remove_default_dock.plist':
+        ensure => absent,
+    }
 }
