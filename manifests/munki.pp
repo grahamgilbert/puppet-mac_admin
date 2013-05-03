@@ -60,7 +60,7 @@ class mac_admin::munki(
         content => template('mac_admin/com.grahamgilbert.munkiprefs.erb'),
         owner   => 0,
         group   => 0,
-        mode    => '0700',
+        mode    => '0755',
     }
 
     ##Install the profile

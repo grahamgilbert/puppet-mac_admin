@@ -29,7 +29,7 @@ class mac_admin::crypt(
         content => template('mac_admin/com.grahamgilbert.crypt.erb'),
         owner   => 0,
         group   => 0,
-        mode    => '0700',
+        mode    => '0755',
     }
 
     ##Install the profile
