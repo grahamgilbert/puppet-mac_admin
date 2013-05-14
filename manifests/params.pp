@@ -9,6 +9,7 @@ class mac_admin::params{
         $namerurl = 'http://macnamer'
         $crypturl = 'http://crypt'
         $default_group = 'everyone'
+        $hook_priority = '0'
     }else{
         fail('unsupported operating system')
     }

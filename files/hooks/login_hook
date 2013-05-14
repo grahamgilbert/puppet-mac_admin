@@ -1,0 +1,22 @@
+#!/bin/sh
+# Master login hook script
+# runs each script found in the login hooks directory
+LOGINHOOKSDIR="/var/lib/puppet/mac_admin/hooks/login"
+if [ -d ${LOGINHOOKSDIR} ]; then
+    for script in ${LOGINHOOKSDIR}/* ; do
+        if [ -s ${script} -a -x ${script} ]; then
+            # log this run
+            logger -s -t LoginHook -p user.info Executing ${script}... 1>&2
+            # run the item.
+            ${script} $*
+             
+            # if there was an error, log it
+            rc=$?
+            if [ $rc -ne 0 ]; then
+                logger -s -t LoginHook -p user.info ${script} failed with return code ${rc} 1>&2
+                exit $rc
+             fi
+        fi
+    done
+fi
+exit 0
