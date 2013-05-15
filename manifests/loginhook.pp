@@ -21,8 +21,8 @@
 define mac_admin::loginhook(
     $priority = $mac_admin::params::hook_priority,
     $script,
-    ) inherits mac_admin::params {
-    
+    ) {
+    include mac_admin::params
     include macdefaults
     if ! defined(File['/var/lib/puppet/mac_admin']) {
       file { '/var/lib/puppet/mac_admin':
@@ -44,7 +44,7 @@ define mac_admin::loginhook(
 
     if ! defined(File['/var/lib/puppet/mac_admin/hooks/login_hook']) {
         file {'/var/lib/puppet/mac_admin/hooks/login_hook':
-            content => 'puppet:///modules/mac_admin/hooks/login_hook',
+            source  => 'puppet:///modules/mac_admin/hooks/login_hook',
             owner   => 0,
             group   => 0,
             mode    => '0755',
@@ -52,7 +52,7 @@ define mac_admin::loginhook(
     }
     
     file {"/var/lib/puppet/mac_admin/hooks/login/${priority}-${title}":
-        content => $script,
+        source => $script,
         owner   => 0,
         group   => 0,
         mode    => '0755',
