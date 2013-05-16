@@ -53,9 +53,9 @@ define mac_admin::loginhook(
     
     file {"/var/lib/puppet/mac_admin/hooks/login/${priority}-${title}":
         source => $script,
-        owner   => 0,
-        group   => 0,
-        mode    => '0755',
+        owner  => 0,
+        group  => 0,
+        mode   => '0755',
     }
     
 	if ! defined(Mac-defaults['mac_admin-loginhook']){
@@ -64,7 +64,6 @@ define mac_admin::loginhook(
     		key => 'LoginHook',
     		value => '/var/lib/puppet/mac_admin/hooks/login_hook',
     		type => 'string',
-            require => File['/var/lib/puppet/mac_admin/hooks/login_hook'],
     	} 
     }
 
