@@ -1,7 +1,7 @@
-
 spec/fixtures/modules/mac_profiles_handler/
 
 .bundle
 
 spec/fixtures/.librarian
 spec/fixtures/.tmp
+pkg
