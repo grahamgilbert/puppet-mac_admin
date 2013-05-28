@@ -6,6 +6,9 @@ class mac_admin::params{
         $install_apple_updates = false
         $suppress_stop = false
         $bootstrap = false
+        $packageurl = ''
+        $catalogurl = ''
+        $manifesturl = ''
         $namerurl = 'http://macnamer'
         $crypturl = 'http://crypt'
         $default_group = 'everyone'

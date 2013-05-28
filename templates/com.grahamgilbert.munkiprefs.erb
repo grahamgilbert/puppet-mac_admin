@@ -21,7 +21,12 @@
 								<key>InstallAppleSoftwareUpdates</key>
 								<% if install_apple_updates == true -%><true/><% else -%><false/>
 								<% end -%>
-								
+								<% if packageurl !="" -%><key>PackageURL</key>
+                                <string><%= packageurl -%></string><% end -%>
+								<% if manifesturl !="" -%><key>ManifestURL</key>
+                                <string><%= manifesturl -%></string><% end -%>
+								<% if catalogurl != "" -%><key>CatalogURL</key>
+                                <string><%= catalogurl -%></string><% end -%>
 								<key>SoftwareRepoURL</key>
 								<string><%= repourl -%></string>
 								<key>SuppressAutoInstall</key>

@@ -39,6 +39,9 @@ class mac_admin::munki(
     $suppress_stop = $mac_admin::params::suppress_stop,
     $bootstrap = $mac_admin::params::bootstrap,
     $install_apple_updates = $mac_admin::params::install_apple_updates,
+    $packageurl = $mac_admin::params::packageurl,
+    $catalogurl = $mac_admin::params::catalogurl,
+    $manifesturl = $mac_admin::params::manifesturl,
     ) inherits mac_admin::params {
 
     ## Install the latest Munki
