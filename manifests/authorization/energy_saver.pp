@@ -20,14 +20,15 @@ class mac_admin::authorization::energy_saver(
     ) inherits mac_admin::params {
 
     include mac_admin::authorization::setup
-
-    macauthorization { 'system.preferences.energy_saver':
-      ensure     => 'present',
-      allow_root => 'true',
-      auth_class => 'user',
-      auth_type  => 'right',
-      comment    => 'Changed by Puppet',
-      group      => $group,
-      shared     => 'true',
+    if $::macosx_productversion_major != '10.9'{
+        macauthorization { 'system.preferences.energysaver':
+          ensure     => 'present',
+          allow_root => 'true',
+          auth_class => 'user',
+          auth_type  => 'right',
+          comment    => 'Changed by Puppet',
+          group      => $group,
+          shared     => 'true',
+        }
     }
 }

@@ -19,10 +19,12 @@ class mac_admin::authorization::setup(
     $group = $mac_admin::params::default_group,
     ) inherits mac_admin::params {
 
-    macauthorization { 'system.preferences':
-      ensure    => 'present',
-      comment   => 'Changed by Puppet',
-      group     => $group,
-      auth_type => 'right',
+    if $::macosx_productversion_major != '10.9'{    
+        macauthorization { 'system.preferences':
+          ensure    => 'present',
+          comment   => 'Changed by Puppet',
+          group     => $group,
+          auth_type => 'right',
+        }
     }
 }

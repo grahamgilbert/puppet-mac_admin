@@ -20,23 +20,24 @@ class mac_admin::authorization::network(
     ) inherits mac_admin::params {
 
     include mac_admin::authorization::setup
+    if $::macosx_productversion_major != '10.9'{
+        macauthorization { 'system.preferences.network':
+            ensure     => 'present',
+            allow_root => 'true',
+            auth_class => 'user',
+            auth_type  => 'right',
+            comment    => 'Changed by Puppet',
+            group      => $group,
+            shared     => 'true',
+        }
 
-    macauthorization { 'system.preferences.network':
-        ensure     => 'present',
-        allow_root => 'true',
-        auth_class => 'user',
-        auth_type  => 'right',
-        comment    => 'Changed by Puppet',
-        group      => $group,
-        shared     => 'true',
-    }
-
-    #check what the default is, we ought to be putting this back how it was
-    macauthorization { 'system.services.systemconfiguration.network':
-        ensure     => 'present',
-        auth_class => 'rule',
-        auth_type  => 'right',
-        comment    => 'Changed by Puppet',
-        rule       => 'allow',
+        #check what the default is, we ought to be putting this back how it was
+        macauthorization { 'system.services.systemconfiguration.network':
+            ensure     => 'present',
+            auth_class => 'rule',
+            auth_type  => 'right',
+            comment    => 'Changed by Puppet',
+            rule       => 'allow',
+        }
     }
 }

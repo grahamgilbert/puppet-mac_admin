@@ -16,6 +16,10 @@
 							<dict>
 								<key>AppleSoftwareUpdatesOnly</key>
 								<false/>
+								<% if additionalhttpheaders !="" -%><key>AdditionalHttpHeaders</key>
+                                <array>
+                                    <string><%= additionalhttpheaders -%></string>
+                                </array><% end -%>
 								<key>ClientIdentifier</key>
 								<string><%= clientidentifier -%></string>
 								<key>InstallAppleSoftwareUpdates</key>

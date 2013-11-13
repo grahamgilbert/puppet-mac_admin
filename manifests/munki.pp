@@ -42,13 +42,14 @@ class mac_admin::munki(
     $packageurl = $mac_admin::params::packageurl,
     $catalogurl = $mac_admin::params::catalogurl,
     $manifesturl = $mac_admin::params::manifesturl,
+    $additionalhttpheaders = $mac_admin::params::additionalhttpheaders,
     ) inherits mac_admin::params {
 
     ## Install the latest Munki
     package { 'munki_tools':
         ensure   => installed,
         provider => pkgdmg,
-        source   => 'https://munki.googlecode.com/files/munkitools-0.9.0.1792.0.dmg',
+        source   => 'https://munki.googlecode.com/files/munkitools-0.9.2.1846.0.dmg',
     }
 
     if ! defined(File['/var/lib/puppet/mac_admin']) {
