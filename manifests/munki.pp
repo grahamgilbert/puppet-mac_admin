@@ -49,7 +49,7 @@ class mac_admin::munki(
     package { 'munki_tools':
         ensure   => installed,
         provider => pkgdmg,
-        source   => 'https://munki.googlecode.com/files/munkitools-0.9.2.1846.0.dmg',
+        source   => 'https://munki.googlecode.com/files/munkitools-1.0.0.1864.0.dmg',
     }
 
     if ! defined(File['/var/lib/puppet/mac_admin']) {
