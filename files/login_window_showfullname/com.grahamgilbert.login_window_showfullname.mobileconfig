@@ -41,7 +41,7 @@ com.apple.loginwindow
 
 Git revision: 6c7f6a207a</string>
 	<key>PayloadDisplayName</key>
-	<string>Show Hostname at Login Window</string>
+	<string>Show username and password fields at Login Window</string>
 	<key>PayloadIdentifier</key>
 	<string>com.grahamgilbert.login_window_showfullname</string>
 	<key>PayloadOrganization</key>
