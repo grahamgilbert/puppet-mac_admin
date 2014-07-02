@@ -16,6 +16,7 @@
 
 class mac_admin::macnamer(
     $namerurl = $mac_admin::params::namerurl,
+    $key
     ) inherits mac_admin::params {
 
     if ! defined(File['/var/lib/puppet/mac_admin']) {

@@ -29,6 +29,6 @@ class mac_admin::icloud_assistant(
         ensure => present,
         domain => '/System/Library/User\ Template/Non_localized/Library/Preferences/com.apple.SetupAssistant',
         key    => 'LastSeenCloudProductVersion',
-        value  => '10.9.3',
+        value  => '10.9.4',
     }
 }

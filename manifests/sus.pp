@@ -25,6 +25,7 @@ class mac_admin::sus(
     $sus_url_107 = undef,
     $sus_url_108 = undef,
     $sus_url_109 = undef,
+    $sus_url_1010 = undef,
     ) inherits mac_admin::params {
     ## Set the url for each OS
     case $::macosx_productversion_major {
@@ -41,6 +42,12 @@ class mac_admin::sus(
         10.9:{
             if $sus_url_109!=false{
                 $sus_url = $sus_url_109
+            }
+        }
+
+        10.10:{
+            if $sus_url_1010!=false{
+                $sus_url = $sus_url_1010
             }
         }
     }

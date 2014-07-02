@@ -82,4 +82,8 @@ class mac_admin::munki(
             subscribe   => Package['munki_tools'],
         }
     }
+
+    class { 'mac_admin::munki::conditions':
+      require => Package['munki_tools']
+    }
 }

@@ -1,5 +1,5 @@
 class mac_admin::params{
-    if ($::operatingsystem=='Darwin') and ($::macosx_productversion_major >= '10.7'){
+    if ($::operatingsystem=='Darwin') {
         $repourl = 'http://munki'
         $clientidentifier = $::sp_serial_number
         $suppressautoinstall = false

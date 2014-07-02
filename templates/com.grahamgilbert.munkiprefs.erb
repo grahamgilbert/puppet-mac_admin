@@ -16,28 +16,28 @@
 							<dict>
 								<key>AppleSoftwareUpdatesOnly</key>
 								<false/>
-								<% if @additionalhttpheaders !="" -%><key>AdditionalHttpHeaders</key>
+								<% if additionalhttpheaders !="" -%><key>AdditionalHttpHeaders</key>
                                 <array>
-                                    <string><%= @additionalhttpheaders -%></string>
+                                    <string><%= additionalhttpheaders -%></string>
                                 </array><% end -%>
 								<key>ClientIdentifier</key>
-								<string><%= @clientidentifier -%></string>
+								<string><%= clientidentifier -%></string>
 								<key>InstallAppleSoftwareUpdates</key>
-								<% if @install_apple_updates == true -%><true/><% else -%><false/>
+								<% if install_apple_updates == true -%><true/><% else -%><false/>
 								<% end -%>
-								<% if @packageurl !="" -%><key>PackageURL</key>
-                                <string><%= @packageurl -%></string><% end -%>
-								<% if @manifesturl !="" -%><key>ManifestURL</key>
-                                <string><%= @manifesturl -%></string><% end -%>
-								<% if @catalogurl != "" -%><key>CatalogURL</key>
-                                <string><%= @catalogurl -%></string><% end -%>
+								<% if packageurl !="" -%><key>PackageURL</key>
+                                <string><%= packageurl -%></string><% end -%>
+								<% if manifesturl !="" -%><key>ManifestURL</key>
+                                <string><%= manifesturl -%></string><% end -%>
+								<% if catalogurl != "" -%><key>CatalogURL</key>
+                                <string><%= catalogurl -%></string><% end -%>
 								<key>SoftwareRepoURL</key>
-								<string><%= @repourl -%></string>
+								<string><%= repourl -%></string>
 								<key>SuppressAutoInstall</key>
-								<% if @suppressautoinstall == true -%><true/><% else -%><false/>
+								<% if suppressautoinstall == true -%><true/><% else -%><false/>
 								<% end -%>
 								<key>SuppressStopButtonOnInstall</key>
-								<% if @suppress_stop == true -%><true/><% else -%><false/>
+								<% if suppress_stop == true -%><true/><% else -%><false/>
 								<% end -%>
 							</dict>
 						</dict>
