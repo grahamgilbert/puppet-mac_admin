@@ -50,18 +50,35 @@ define mac_admin::osx_defaults(
       } else {
         $checkvalue = $value
       }
-      exec { "osx_defaults write ${host} ${domain}:${key}=>${value}":
+
+      if $user != undef {
+        exec { "osx_defaults write ${host} ${domain}:${key}=>${value}":
         command => $cmd,
-        unless  => "${defaults_cmd}${host_option} read ${domain} '${key}' && (${defaults_cmd}${host_option} read ${domain} '${key}' | awk '{ exit \$0 != \"${checkvalue}\" }')",
-        # user    => $user
+          unless  => "${defaults_cmd}${host_option} read ${domain} '${key}' && (${defaults_cmd}${host_option} read ${domain} '${key}' | awk '{ exit \$0 != \"${checkvalue}\" }')",
+          user    => $user
+        }
+      }else{
+        exec { "osx_defaults write ${host} ${domain}:${key}=>${value}":
+          command => $cmd,
+          unless  => "${defaults_cmd}${host_option} read ${domain} '${key}' && (${defaults_cmd}${host_option} read ${domain} '${key}' | awk '{ exit \$0 != \"${checkvalue}\" }')",
+          # user    => $user
+        }
       }
     } # end present
 
     default: {
-      exec { "osx_defaults delete ${host} ${domain}:${key}":
+      if $user != undef {
+        exec { "osx_defaults delete ${host} ${domain}:${key}":
+          command => "${defaults_cmd}${host_option} delete ${domain} '${key}'",
+          onlyif  => "${defaults_cmd}${host_option} read ${domain} | grep '${key}'",
+          user    => $user
+        }
+      }else{
+        exec { "osx_defaults delete ${host} ${domain}:${key}":
         command => "${defaults_cmd}${host_option} delete ${domain} '${key}'",
         onlyif  => "${defaults_cmd}${host_option} read ${domain} | grep '${key}'",
         # user    => $user
+      }
       }
     } # end default
   }
