@@ -5,3 +5,4 @@ spec/fixtures/modules/mac_profiles_handler/
 spec/fixtures/.librarian
 spec/fixtures/.tmp
 pkg
+spec/*

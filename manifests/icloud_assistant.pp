@@ -9,10 +9,25 @@
 
 class mac_admin::icloud_assistant(
 ) inherits mac_admin::params {
+    if ! defined(File['/var/lib/puppet/mac_admin']) {
+      file { '/var/lib/puppet/mac_admin':
+        ensure => directory,
+      }
+    }
+
+    ##Write out the contents of the template to a mobileconfig file (this needs to be cleaned up)
+    file {'/var/lib/puppet/mac_admin/com.grahamgilbert.icloud_assistant.mobileconfig':
+        content => template('mac_admin/com.grahamgilbert.icloud_assistant.erb'),
+        owner   => 0,
+        group   => 0,
+        mode    => '0755',
+    }
+
     ##Install the profile
     mac_profiles_handler::manage { 'com.grahamgilbert.icloud_assistant':
         ensure      => present,
-        file_source => 'puppet:///modules/mac_admin/icloud_assistant/com.grahamgilbert.icloud_assistant.mobileconfig',
+        file_source => '/var/lib/puppet/mac_admin/com.grahamgilbert.icloud_assistant.mobileconfig',
+        require     => File['/var/lib/puppet/mac_admin/com.grahamgilbert.icloud_assistant.mobileconfig']
     }
 
     # Defaults as the profile isn't working
@@ -29,6 +44,6 @@ class mac_admin::icloud_assistant(
         ensure => present,
         domain => '/System/Library/User\ Template/Non_localized/Library/Preferences/com.apple.SetupAssistant',
         key    => 'LastSeenCloudProductVersion',
-        value  => '10.9.4',
+        value  => $::macosx_productversion,
     }
 }

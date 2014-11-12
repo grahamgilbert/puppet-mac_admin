@@ -46,10 +46,10 @@ class mac_admin::munki(
     ) inherits mac_admin::params {
 
     ## Install the latest Munki
-    package { 'munki_tools':
+    package { 'munki_tools2':
         ensure   => installed,
         provider => pkgdmg,
-        source   => 'https://munki.googlecode.com/files/munkitools-1.0.0.1864.0.dmg',
+        source   => 'https://github.com/munki/munki/releases/download/v2.0.1/munkitools-2.0.1.2253.pkg',
     }
 
     if ! defined(File['/var/lib/puppet/mac_admin']) {
@@ -79,11 +79,11 @@ class mac_admin::munki(
         exec {'munki-check':
             command     => '/usr/bin/touch /Users/Shared/.com.googlecode.munki.checkandinstallatstartup',
             refreshonly => true,
-            subscribe   => Package['munki_tools'],
+            subscribe   => Package['munki_tools2'],
         }
     }
 
     class { 'mac_admin::munki::conditions':
-      require => Package['munki_tools']
+      require => Package['munki_tools2']
     }
 }
