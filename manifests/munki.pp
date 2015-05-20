@@ -68,7 +68,7 @@ class mac_admin::munki(
     # }
 
     ##Install the profile
-    mac_profiles_handler::manage { 'com.grahamgilbert.munkiprefs':
+    ::mac_profiles_handler::manage { 'com.grahamgilbert.munkiprefs':
         ensure      => present,
         file_source => template('mac_admin/com.grahamgilbert.munkiprefs.erb'),
         type        => 'template'
