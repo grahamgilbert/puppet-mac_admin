@@ -45,8 +45,6 @@ class mac_admin::munki(
     $additionalhttpheaders = $mac_admin::params::additionalhttpheaders,
     ) inherits mac_admin::params {
 
-    include mac_profiles_handler
-
     ## Install the latest Munki
     package { 'munki_tools2':
         ensure   => installed,
