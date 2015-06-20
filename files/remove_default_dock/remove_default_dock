@@ -1,9 +1,0 @@
-#!/bin/bash
-
-sleep 30
-/usr/local/bin/dockutil --remove 'Notes' --no-restart
-/usr/local/bin/dockutil --remove 'Reminders' --no-restart
-/usr/local/bin/dockutil --remove 'App Store'
-	
-rm ~/LaunchAgents/com.pebbleit.remove_default_dock.plist
-#rm $0

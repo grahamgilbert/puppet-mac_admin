@@ -29,13 +29,13 @@ define mac_admin::loginhook(
         ensure => directory,
       }
     }
-    
+
     if ! defined(File['/var/lib/puppet/mac_admin/hooks']) {
       file { '/var/lib/puppet/mac_admin/hooks':
         ensure => directory,
       }
     }
-    
+
     if ! defined(File['/var/lib/puppet/mac_admin/hooks/login']) {
       file { '/var/lib/puppet/mac_admin/hooks/login':
         ensure => directory,
@@ -50,22 +50,22 @@ define mac_admin::loginhook(
             mode    => '0755',
         }
     }
-    
+
     file {"/var/lib/puppet/mac_admin/hooks/login/${priority}-${title}":
         source => $script,
         owner  => 0,
         group  => 0,
         mode   => '0755',
     }
-    
-	if ! defined(Mac-defaults['mac_admin-loginhook']){
+
+    if ! defined(Mac-defaults['mac_admin-loginhook']){
         mac-defaults { "mac_admin-loginhook":
-    		domain => '/var/root/Library/Preferences/com.apple.loginwindow',
-    		key => 'LoginHook',
-    		value => '/var/lib/puppet/mac_admin/hooks/login_hook',
-    		type => 'string',
-    	} 
+            domain => '/var/root/Library/Preferences/com.apple.loginwindow',
+            key => 'LoginHook',
+            value => '/var/lib/puppet/mac_admin/hooks/login_hook',
+            type => 'string',
+        }
     }
 
-    
+
 }

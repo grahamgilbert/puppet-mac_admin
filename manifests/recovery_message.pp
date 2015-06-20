@@ -32,23 +32,14 @@ define mac_admin::recovery_message(
 
   if $ensure == 'present' {
     if $value != undef {
-      # mac-defaults { "Set OS X Recovery Message":
-#           domain => '/Library/Preferences/com.apple.loginwindow',
-#           key => 'LoginwindowText',
-#           value => "${value}",
-#         notify => [
-#               Exec['Refresh system kext cache'],
-#               Exec['Refresh CoreStorage EFI Cache']
-#             ]
-#           } 
-        
+
         mac_admin::osx_defaults { 'Set OS X Recovery Message':
             ensure => present,
             domain => '/Library/Preferences/com.apple.loginwindow',
             key    => 'LoginwindowText',
             value  => $value,
             #user   => root
-        }   
+        }
 
       exec { 'Set OS X Recovery Message NVRAM Variable':
         command => "/usr/sbin/nvram good-samaritan-message='${value}'",

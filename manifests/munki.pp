@@ -58,15 +58,6 @@ class mac_admin::munki(
         }
     }
 
-    ##Write out the contents of the template to a mobileconfig file
-
-    # file {'/var/lib/puppet/mac_admin/com.grahamgilbert.munkiprefs.mobileconfig':
-    #     content => template('mac_admin/com.grahamgilbert.munkiprefs.erb'),
-    #     owner   => 0,
-    #     group   => 0,
-    #     mode    => '0755',
-    # }
-
     ##Install the profile
     mac_profiles_handler::manage { 'com.grahamgilbert.munkiprefs':
         ensure      => present,
