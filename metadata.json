@@ -1,0 +1,20 @@
+{
+  "name": "grahamgilbert/mac_admin",
+  "version": "0.2.0",
+  "author": "Graham Gilbert",
+  "license": "Apache-2.0",
+  "summary": "A module for a thing",
+  "source": "https://github.com/grahamgilbert/puppet-mac_admin",
+  "project_page": "https://forge.puppetlabs.com/grahamgilbert/mac_admin",
+  "issues_url": "https://github.com/grahamgilbert/puppet-mac_admin/issues",
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"Darwin",
+    "operatingsystemrelease":[ "13.0","13.1.0","13.2.0","13.3.0", "13.4.0", "14.0","14.1.0", "14.2.0", "14.3.0" ]
+    }
+   ],
+  "dependencies": [
+    { "name": "rcoleman/mac_profiles_handler", "version_requirement": ">= 0.1.0" },
+    { "name": "grahamgilbert/macdefaults", "version_requirement": ">= 0.0.1" }
+  ]
+}
