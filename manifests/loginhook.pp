@@ -19,8 +19,8 @@
 #
 
 define mac_admin::loginhook(
-    $priority = $mac_admin::params::hook_priority,
     $script,
+    $priority = $mac_admin::params::hook_priority,
     ) {
     include mac_admin::params
     include macdefaults
@@ -61,11 +61,9 @@ define mac_admin::loginhook(
     if ! defined(Mac-defaults['mac_admin-loginhook']){
         mac-defaults { "mac_admin-loginhook":
             domain => '/var/root/Library/Preferences/com.apple.loginwindow',
-            key => 'LoginHook',
-            value => '/var/lib/puppet/mac_admin/hooks/login_hook',
-            type => 'string',
+            key    => 'LoginHook',
+            value  => '/var/lib/puppet/mac_admin/hooks/login_hook',
+            type   => 'string',
         }
     }
-
-
 }

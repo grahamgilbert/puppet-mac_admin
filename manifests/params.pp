@@ -1,3 +1,4 @@
+# just some defaults
 class mac_admin::params{
     if ($::operatingsystem=='Darwin') {
         $repourl = 'http://munki'

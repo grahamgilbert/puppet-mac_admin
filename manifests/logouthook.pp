@@ -19,8 +19,8 @@
 #
 
 define mac_admin::logouthook(
-    $priority = $mac_admin::params::hook_priority,
     $script,
+    $priority = $mac_admin::params::hook_priority,
     ) {
     include mac_admin::params
     include macdefaults
@@ -61,11 +61,9 @@ define mac_admin::logouthook(
     if ! defined(Mac-defaults['mac_admin-logouthook']){
         mac-defaults { "mac_admin-logouthook":
             domain => '/var/root/Library/Preferences/com.apple.loginwindow',
-            key => 'LogoutHook',
-            value => '/var/lib/puppet/mac_admin/hooks/logout_hook',
-            type => 'string',
+            key    => 'LogoutHook',
+            value  => '/var/lib/puppet/mac_admin/hooks/logout_hook',
+            type   => 'string',
         }
     }
-
-
 }

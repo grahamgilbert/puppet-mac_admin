@@ -38,7 +38,6 @@ define mac_admin::recovery_message(
             domain => '/Library/Preferences/com.apple.loginwindow',
             key    => 'LoginwindowText',
             value  => $value,
-            #user   => root
         }
 
       exec { 'Set OS X Recovery Message NVRAM Variable':
@@ -50,17 +49,16 @@ define mac_admin::recovery_message(
       fail('Cannot set an OS X recovery message without a value')
     }
   } else {
-      mac-defaults { "Remove OS X Recovery Message":
-  		domain => '/Library/Preferences/com.apple.loginwindow',
-  		key => 'LoginwindowText',
-  		value => "${value}",
-  		#type => 'string',
-        action => 'delete',
-        notify => [
-              Exec['Refresh system kext cache'],
-              Exec['Refresh CoreStorage EFI Cache']
+        mac-defaults { 'Remove OS X Recovery Message':
+            domain => '/Library/Preferences/com.apple.loginwindow',
+            key    => 'LoginwindowText',
+            value  => $value,
+            action => 'delete',
+            notify => [
+                Exec['Refresh system kext cache'],
+                Exec['Refresh CoreStorage EFI Cache']
             ]
-  	    }
+        }
 
     exec { 'Remove OS X Recovery Message NVRAM Variable':
       command => '/usr/sbin/nvram -d good-samaritan-message',
