@@ -46,11 +46,7 @@ class mac_admin::munki(
     ) inherits mac_admin::params {
 
     ## Install the latest Munki
-    package { 'munki_tools2':
-        ensure   => installed,
-        provider => pkgdmg,
-        source   => 'https://github.com/munki/munki/releases/download/v2.2.4/munkitools-2.2.4.2431.pkg',
-    }
+    include mac_admin::munki::munkitools
 
     if ! defined(File['/var/lib/puppet/mac_admin']) {
         file { '/var/lib/puppet/mac_admin':
