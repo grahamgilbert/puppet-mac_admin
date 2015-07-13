@@ -69,18 +69,37 @@ class mac_admin::sus(
 
     # If the sus_url has been set, create and install the profile
     if $sus_url != false {
+        # There is currently a bug in Software update that means we can't use a profile.
+        # So we're now using a plain old defaults write. Left the old code here in the
+        # hope it can be used again at some point
+        # file {'/var/lib/puppet/mac_admin/com.grahamgilbert.susprefs.mobileconfig':
+        #     content => template('mac_admin/com.grahamgilbert.susprefs.erb'),
+        #     owner   => 0,
+        #     group   => 0,
+        #     mode    => '0755',
+        # }
+        #
+        # ##Install the profile
+        # mac_profiles_handler::manage { 'com.grahamgilbert.susprefs':
+        #     ensure      => present,
+        #     file_source => '/var/lib/puppet/mac_admin/com.grahamgilbert.susprefs.mobileconfig',
+        #     require     => File['/var/lib/puppet/mac_admin/com.grahamgilbert.susprefs.mobileconfig']
+        # }
+
         file {'/var/lib/puppet/mac_admin/com.grahamgilbert.susprefs.mobileconfig':
-            content => template('mac_admin/com.grahamgilbert.susprefs.erb'),
-            owner   => 0,
-            group   => 0,
-            mode    => '0755',
+            ensure => absent,
         }
 
         ##Install the profile
         mac_profiles_handler::manage { 'com.grahamgilbert.susprefs':
-            ensure      => present,
-            file_source => '/var/lib/puppet/mac_admin/com.grahamgilbert.susprefs.mobileconfig',
-            require     => File['/var/lib/puppet/mac_admin/com.grahamgilbert.susprefs.mobileconfig']
+            ensure => absent,
+        }
+
+        mac_admin::osx_defaults { 'susprefs':
+            ensure => present,
+            domain => '/Library/Preferences/com.apple.SoftwareUpdate',
+            key    => 'CatalogURL',
+            value  => $sus_url
         }
     }
 }
