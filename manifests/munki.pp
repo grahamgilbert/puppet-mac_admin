@@ -47,7 +47,6 @@ class mac_admin::munki(
 
     ## Install the latest Munki
     include mac_admin::munki::munkitools
-    include mac_profiles_handler
 
     if ! defined(File['/var/lib/puppet/mac_admin']) {
         file { '/var/lib/puppet/mac_admin':
