@@ -20,8 +20,8 @@
                                 <array>
                                     <string><%= additionalhttpheaders -%></string>
                                 </array><% end -%>
-								<key>ClientIdentifier</key>
-								<string><%= clientidentifier -%></string>
+								<% if clientidentifier != "" -%><key>ClientIdentifier</key>
+								<string><%= clientidentifier -%></string><% end -%>
 								<key>InstallAppleSoftwareUpdates</key>
 								<% if install_apple_updates == true -%><true/><% else -%><false/>
 								<% end -%>

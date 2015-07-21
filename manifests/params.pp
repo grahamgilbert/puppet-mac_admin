@@ -2,7 +2,7 @@
 class mac_admin::params{
     if ($::operatingsystem=='Darwin') {
         $repourl = 'http://munki'
-        $clientidentifier = $::sp_serial_number
+        $clientidentifier = ''
         $suppressautoinstall = false
         $install_apple_updates = false
         $suppress_stop = false
