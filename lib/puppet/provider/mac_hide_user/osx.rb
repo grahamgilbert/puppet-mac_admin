@@ -9,7 +9,7 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
 
   def get_dscl_user
     begin
-      output = dscl(['.', 'read', '/Users' + :namevar, 'IsHidden'])
+      output = dscl(['.', 'read', '/Users/#{namevar}', 'IsHidden'])
     rescue Puppet::ExecutionFailure => e
       Puppet.debug("#get_dscl_user had an error -> #{e.inspect}")
       return nil
