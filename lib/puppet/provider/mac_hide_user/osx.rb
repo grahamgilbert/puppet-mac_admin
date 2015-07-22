@@ -14,9 +14,13 @@ Puppet::Type.type(:mac_sus_schedule).provide(:osx) do
       Puppet.debug("#get_dscl_user had an error -> #{e.inspect}")
       return nil
     end
-    return nil if output =~ /No such key: IsHidden/
-    return nil if outpit =~ /dsAttrTypeNative:IsHidden: 1/
-    output
+    if output =~ /No such key: IsHidden/
+        return nil
+    elsif outpt =~ /dsAttrTypeNative:IsHidden: 1/
+        return nil
+    else
+        output
+    end
   end
 
   def exists?
