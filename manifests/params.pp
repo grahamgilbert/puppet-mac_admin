@@ -13,6 +13,7 @@ class mac_admin::params{
         $namerurl = 'http://macnamer'
         $crypturl = 'http://crypt'
         $hook_priority = '0'
+        $additionalhttpheaders = ''
     }else{
         fail('unsupported operating system')
     }
