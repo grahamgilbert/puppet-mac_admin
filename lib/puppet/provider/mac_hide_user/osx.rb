@@ -1,7 +1,7 @@
 Puppet::Type.type(:mac_sus_schedule).provide(:osx) do
   desc "Enables and disables automatic software update checks"
   confine :operatingsystem => :darwin
-  confine :macosx_productversion_major => :10.10
+  confine :macosx_productversion_major => ["10.10", "10.11"]
 
   defaultfor :operatingsystem => :darwin
 
