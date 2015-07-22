@@ -6,18 +6,19 @@ Puppet::Type.newtype(:mac_hide_user) do
   ensurable do
           desc "Possible values are *true* and *false*"
 
-          newvalue(:false) do
+          newvalue(:absent) do
               if @resource.provider.exists?
                   @resource.provider.destroy
               end
           end
+          aliasvalue(:false, :absent)
 
-          newvalue(:true) do
+          newvalue(:present) do
               unless @resource.provider.exists?
                   @resource.provider.create
               end
-          end 
-
+          end
+          aliasvalue(:true, :present)
       end
 
 end
