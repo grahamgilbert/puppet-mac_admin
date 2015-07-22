@@ -1,5 +1,5 @@
-Puppet::Type.type(:mac_sus_schedule).provide(:osx) do
-  desc "Enables and disables automatic software update checks"
+Puppet::Type.type(:mac_hide_user).provide(:osx) do
+  desc "Hides the user from the login window specified in the namevar"
   confine :operatingsystem => :darwin
   confine :macosx_productversion_major => ["10.10", "10.11"]
 
