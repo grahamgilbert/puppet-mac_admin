@@ -20,7 +20,7 @@ Puppet::Type.type(:mac_sus_schedule).provide(:osx) do
   end
 
   def exists?
-    get_sus_schedule != nil
+    get_dscl_user != nil
   end
 
   def create
