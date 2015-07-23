@@ -16,7 +16,7 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
     end
     if output =~ /No such key: IsHidden/
         return nil
-    elsif outpt =~ /dsAttrTypeNative:IsHidden: 1/
+    elsif output =~ /dsAttrTypeNative:IsHidden: 1/
         return nil
     else
         output
