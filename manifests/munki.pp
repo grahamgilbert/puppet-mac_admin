@@ -61,9 +61,7 @@ class mac_admin::munki(
         type        => 'template'
     }
 
-    
 
-    class { 'mac_admin::munki::conditions':
-      require => Package['munki_tools2']
-    }
+
+    class { 'mac_admin::munki::conditions': }
 }
