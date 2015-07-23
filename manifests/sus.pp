@@ -53,6 +53,7 @@ class mac_admin::sus(
             if $sus_url_1010!=false{
                 $sus_url = $sus_url_1010
             }
+        }
 
         10.11:{
             if $sus_url_1011!=false{
