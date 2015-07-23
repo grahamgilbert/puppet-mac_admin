@@ -61,14 +61,7 @@ class mac_admin::munki(
         type        => 'template'
     }
 
-    ##If we need to, touch the bootstrap file
-    if ($bootstrap==true){
-        exec {'munki-check':
-            command     => '/usr/bin/touch /Users/Shared/.com.googlecode.munki.checkandinstallatstartup',
-            refreshonly => true,
-            subscribe   => Package['munki_tools2'],
-        }
-    }
+    
 
     class { 'mac_admin::munki::conditions':
       require => Package['munki_tools2']
