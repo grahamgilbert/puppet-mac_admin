@@ -9,18 +9,13 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
 
   def get_dscl_user
     begin
-      output = dscl(['.', 'read', '/Users/#{namevar}', 'IsHidden'])
+      output = dscl(['.', 'read', '/Users/#{name}', 'IsHidden'])
     rescue Puppet::ExecutionFailure => e
       Puppet.debug("#get_dscl_user had an error -> #{e.inspect}")
       return nil
     end
-    if output =~ /No such key: IsHidden/
-        return nil
-    elsif output =~ /dsAttrTypeNative:IsHidden: 1/
-        return nil
-    else
-        output
-    end
+    return nil if output =~ /No such key: IsHidden/ or if output =~ /dsAttrTypeNative:IsHidden: 1/
+    return output
   end
 
   def exists?
@@ -28,10 +23,10 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
   end
 
   def create
-    dscl(['.', 'read', '/Users' + :namevar, 'IsHidden', '1'])
+    dscl(['.', 'read', '/Users' + :name, 'IsHidden', '1'])
   end
 
   def destroy
-    dscl(['.', 'read', '/Users' + :namevar, 'IsHidden', '0'])
+    dscl(['.', 'read', '/Users' + :name, 'IsHidden', '0'])
   end
 end
