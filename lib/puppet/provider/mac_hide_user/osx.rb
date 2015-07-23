@@ -14,8 +14,9 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
       Puppet.debug("#get_dscl_user had an error -> #{e.inspect}")
       return nil
     end
-    return nil if output =~ /No such key: IsHidden/ or if output =~ /dsAttrTypeNative:IsHidden: 1/
-    return output
+    return nil if output =~ /No such key: IsHidden/
+    return nil if output =~ /dsAttrTypeNative:IsHidden: 1/
+    output
   end
 
   def exists?
