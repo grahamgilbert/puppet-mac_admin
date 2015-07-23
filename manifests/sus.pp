@@ -92,9 +92,9 @@ class mac_admin::sus(
         }
 
         ##Install the profile
-        mac_profiles_handler::manage { 'com.grahamgilbert.susprefs':
-            ensure => absent,
-        }
+        # mac_profiles_handler::manage { 'com.grahamgilbert.susprefs':
+        #     ensure => absent,
+        # }
 
         mac_admin::osx_defaults { 'susprefs':
             ensure => present,
