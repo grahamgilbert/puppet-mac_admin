@@ -7,7 +7,7 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
 
   commands :dscl => '/usr/bin/dscl'
 
-  def get_dscl_user
+  def get_dscl_user(name)
     begin
       output = dscl(['.', 'read', '/Users/#{name}', 'IsHidden'])
     rescue Puppet::ExecutionFailure => e
@@ -20,14 +20,14 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
   end
 
   def exists?
-    get_dscl_user != nil
+    get_dscl_user(resource[:name]) != nil
   end
 
   def create
-    dscl(['.', 'read', '/Users' + :name, 'IsHidden', '1'])
+    dscl(['.', 'read', '/Users' + :resource[:name], 'IsHidden', '1'])
   end
 
   def destroy
-    dscl(['.', 'read', '/Users' + :name, 'IsHidden', '0'])
+    dscl(['.', 'read', '/Users' + :resource[:name], 'IsHidden', '0'])
   end
 end
