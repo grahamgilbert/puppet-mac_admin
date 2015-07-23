@@ -24,10 +24,10 @@ Puppet::Type.type(:mac_hide_user).provide(:osx) do
   end
 
   def create
-    dscl(['.', 'write', '/Users/' + resource[:name.to_s], 'IsHidden', '1'])
+    dscl(['.', 'create', '/Users/' + resource[:name.to_s], 'IsHidden', '1'])
   end
 
   def destroy
-    dscl(['.', 'write', '/Users/' + resource[:name.to_s], 'IsHidden', '0'])
+    dscl(['.', 'create', '/Users/' + resource[:name.to_s], 'IsHidden', '0'])
   end
 end
