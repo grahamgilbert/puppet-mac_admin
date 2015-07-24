@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+      <dict>
+        <key>PayloadType</key>
+        <string>com.apple.NetworkBrowser</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>PayloadIdentifier</key>
+        <string>com.grahamgilbert.disable_airdrop</string>
+        <key>PayloadEnabled</key>
+        <true/>
+        <key>PayloadUUID</key>
+        <string>77502436-4819-4DF9-B476-0F20E29C91A3</string>
+        <key>PayloadDisplayName</key>
+        <string>AirDrop</string>
+        <key>DisableAirDrop</key>
+        <true/>
+    </dict>
+    </array>
+    <key>PayloadDescription</key>
+    <string>Disables AirDrop.</string>
+    <key>PayloadDisplayName</key>
+    <string>Disables AirDrop</string>
+    <key>PayloadIdentifier</key>
+    <string>com.grahamgilbert.disable_airdrop</string>
+    <key>PayloadOrganization</key>
+    <string></string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>E8A238D7-EC7E-43C4-B3AC-FE1DBF43F184</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
