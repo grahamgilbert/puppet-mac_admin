@@ -10,8 +10,8 @@
 class mac_admin::disable_airdrop(
 ) inherits mac_admin::params {
     ##Install the profile
-    mac_profiles_handler::manage { 'com.grahamgilbert.disable_airdrop':
+    mac_profiles_handler::manage { 'com.grahamgilbert.disableairdrop':
         ensure      => present,
-        file_source => 'puppet:///modules/mac_admin/disable_airdrop/com.grahamgilbert.disable_airdrop.mobileconfig',
+        file_source => 'puppet:///modules/mac_admin/disable_airdrop/com.grahamgilbert.disableairdrop.mobileconfig',
     }
 }
