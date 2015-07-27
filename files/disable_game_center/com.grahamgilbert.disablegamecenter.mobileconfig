@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <array>
+            <dict>
+                <key>PayloadType</key>
+                <string>com.apple.gamed</string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+                <key>PayloadIdentifier</key>
+                <string>com.grahamgilbert.disablegamecenter</string>
+                <key>PayloadEnabled</key>
+                <true/>
+                <key>PayloadUUID</key>
+                <string>553226F2-7606-4CDE-AA59-074FF851A827</string>
+                <key>PayloadDisplayName</key>
+                <string>Disable Game Center</string>
+                <key>GKFeatureGameCenterAllowed</key>
+                <false/>
+                <key>GKFeatureAccountModificationAllowed</key>
+                <false/>
+                <key>GKFeatureAddingGameCenterFriendsAllowed</key>
+                <false/>
+                <key>GKFeatureMultiplayerGamingAllowed</key>
+                <false/>
+            </dict>
+        </array>
+        <key>PayloadDescription</key>
+        <string>Disables Game Center</string>
+        <key>PayloadDisplayName</key>
+        <string>Disables Game Center</string>
+        <key>PayloadIdentifier</key>
+        <string>com.grahamgilbert.disablegamecenter</string>
+        <key>PayloadOrganization</key>
+        <string></string>
+        <key>PayloadRemovalDisallowed</key>
+        <false/>
+        <key>PayloadType</key>
+        <string>Configuration</string>
+        <key>PayloadUUID</key>
+        <string>052322D6-663A-482B-9453-D42B456E97E3</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+    </dict>
+</plist>
