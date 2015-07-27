@@ -10,8 +10,8 @@
 class mac_admin::disable_game_center(
 ) inherits mac_admin::params {
     ##Install the profile
-    mac_profiles_handler::manage { 'com.grahamgilbert.diablegamecenter':
+    mac_profiles_handler::manage { 'com.grahamgilbert.disablegamecenter':
         ensure      => present,
-        file_source => 'puppet:///modules/mac_admin/disable_game_center/com.grahamgilbert.diablegamecenter.mobileconfig',
+        file_source => 'puppet:///modules/mac_admin/disable_game_center/com.grahamgilbert.disablegamecenter.mobileconfig',
     }
 }
