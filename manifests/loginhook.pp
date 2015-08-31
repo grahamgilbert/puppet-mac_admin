@@ -58,12 +58,12 @@ define mac_admin::loginhook(
         mode   => '0755',
     }
 
-    if ! defined(Mac-defaults['mac_admin-loginhook']){
-        mac-defaults { "mac_admin-loginhook":
+    if ! defined(Mac_admin::Osx_defaukts['mac_admin-loginhook']){
+         mac_admin::osx_defaults { 'mac_admin-loginhook':
+            ensure => present,
             domain => '/var/root/Library/Preferences/com.apple.loginwindow',
             key    => 'LoginHook',
-            value  => '/var/lib/puppet/mac_admin/hooks/login_hook',
-            type   => 'string',
+            value  => '/var/lib/puppet/mac_admin/hooks/login_hook'
         }
     }
 }

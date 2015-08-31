@@ -58,12 +58,12 @@ define mac_admin::logouthook(
         mode   => '0755',
     }
 
-    if ! defined(Mac-defaults['mac_admin-logouthook']){
-        mac-defaults { "mac_admin-logouthook":
+    if ! defined(Mac_admin::Osx_defaukts['mac_admin-logouthook']){
+         mac_admin::osx_defaults { 'mac_admin-logouthook':
+            ensure => present,
             domain => '/var/root/Library/Preferences/com.apple.loginwindow',
             key    => 'LogoutHook',
-            value  => '/var/lib/puppet/mac_admin/hooks/logout_hook',
-            type   => 'string',
+            value  => '/var/lib/puppet/mac_admin/hooks/logout_hook'
         }
     }
 }
