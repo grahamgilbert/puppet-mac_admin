@@ -23,7 +23,6 @@ define mac_admin::loginhook(
     $priority = $mac_admin::params::hook_priority,
     ) {
     include mac_admin::params
-    include macdefaults
     if ! defined(File['/var/lib/puppet/mac_admin']) {
       file { '/var/lib/puppet/mac_admin':
         ensure => directory,
