@@ -10,6 +10,9 @@
 # [*script*]
 #   The actual script to run
 #
+# [*ensure*]
+#   Whether the script is present or absent. Defaults to present
+#
 # === Example
 #
 #  mac_admin::loginhook { 'my_login_hook':
@@ -21,6 +24,7 @@
 define mac_admin::loginhook(
     $script,
     $priority = $mac_admin::params::hook_priority,
+    $ensure   = 'present'
     ) {
     include mac_admin::params
     if ! defined(File['/var/lib/puppet/mac_admin']) {
@@ -52,12 +56,13 @@ define mac_admin::loginhook(
 
     file {"/var/lib/puppet/mac_admin/hooks/login/${priority}-${title}":
         source => $script,
+        ensure => $ensure,
         owner  => 0,
         group  => 0,
         mode   => '0755',
     }
 
-    if ! defined(Mac_admin::Osx_defaukts['mac_admin-loginhook']){
+    if ! defined(Mac_admin::Osx_defaults['mac_admin-loginhook']){
          mac_admin::osx_defaults { 'mac_admin-loginhook':
             ensure => present,
             domain => '/var/root/Library/Preferences/com.apple.loginwindow',
