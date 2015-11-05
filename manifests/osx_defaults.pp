@@ -9,20 +9,20 @@
 #   }
 
 define mac_admin::osx_defaults(
-  $ensure = 'present',
-  $host   = undef,
-  $domain = undef,
-  $key    = undef,
-  $value  = undef,
-  $user   = undef,
-  $type   = undef,
+  $ensure      = 'present',
+  $host        = undef,
+  $domain      = undef,
+  $key         = undef,
+  $value       = undef,
+  $user        = undef,
+  $type        = undef,
+  $refreshonly = undef,
 ) {
-  $defaults_cmd = '/usr/bin/defaults'
-
-  $host_option = $host ? {
-    'currentHost' => ' -currentHost',
-    undef         => '',
-    default       => " -host ${host}"
+  $defaults_cmd  = '/usr/bin/defaults'
+  $default_cmds  = $host ? {
+    'currentHost' => [ $defaults_cmd, '-currentHost' ],
+    undef         => [ $defaults_cmd ],
+    default       => [ $defaults_cmd, '-host', $host ]
   }
 
   case $ensure {
@@ -31,37 +31,59 @@ define mac_admin::osx_defaults(
         fail('Cannot ensure present without domain, key, and value attributes')
       }
 
-      if ($type == undef) and (($value == true) or ($value == false)) {
+      if (($type == undef) and (($value == true) or ($value == false))) or ($type =~ /^bool/) {
         $type_ = 'bool'
-      } else {
-        $type_ = $type
-      }
 
-      $cmd = $type_ ? {
-        undef   => "${defaults_cmd}${host_option} write ${domain} '${key}' '${value}'",
-        default => "${defaults_cmd}${host_option} write ${domain} '${key}' -${type_} '${value}'"
-      }
-
-      if ($type_ =~ /^bool/) {
         $checkvalue = $value ? {
           /(true|yes)/ => '1',
           /(false|no)/ => '0',
         }
+
       } else {
+        $type_      = $type
         $checkvalue = $value
       }
+
+      $write_cmd = $type_ ? {
+        undef   => shellquote($default_cmds, 'write', $domain, $key, strip("${value} ")),
+        default => shellquote($default_cmds, 'write', $domain, $key, "-${type_}", strip("${value} "))
+      }
+
+      $read_cmd = shellquote($default_cmds, 'read', $domain, $key)
+
+      $readtype_cmd = shellquote($default_cmds, 'read-type', $domain, $key)
+      $checktype = $type_ ? {
+        /^bool$/ => 'boolean',
+        /^int$/  => 'integer',
+        /^dict$/ => 'dictionary',
+        default  => $type_
+      }
+      $checktype_cmd = $type_ ? {
+        undef   => '',
+        default => " && (${readtype_cmd} | awk '/^Type is / { exit \$3 != \"${checktype}\" } { exit 1 }')"
+      }
+
+      $refreshonly_ = $refreshonly ? {
+        undef   => false,
+        default => true,
+      }
+
       exec { "osx_defaults write ${host} ${domain}:${key}=>${value}":
-        command => $cmd,
-        unless  => "${defaults_cmd}${host_option} read ${domain} '${key}' && (${defaults_cmd}${host_option} read ${domain} '${key}' | awk '{ exit \$0 != \"${checkvalue}\" }')",
-        # user    => $user
+        command     => $write_cmd,
+        unless      => "${read_cmd} && (${read_cmd} | awk '{ exit \$0 != \"${checkvalue}\" }')${checktype_cmd}",
+        user        => $user,
+        refreshonly => $refreshonly_
       }
     } # end present
 
     default: {
+      $list_cmd   = shellquote($default_cmds, 'read', $domain)
+      $key_search = shellquote('grep', $key)
+
       exec { "osx_defaults delete ${host} ${domain}:${key}":
-        command => "${defaults_cmd}${host_option} delete ${domain} '${key}'",
-        onlyif  => "${defaults_cmd}${host_option} read ${domain} | grep '${key}'",
-        # user    => $user
+        command => shellquote($default_cmds, 'delete', $domain, $key),
+        onlyif  => "${list_cmd} | ${key_search}",
+        user    => $user
       }
     } # end default
   }
