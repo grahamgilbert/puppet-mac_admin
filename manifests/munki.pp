@@ -48,7 +48,7 @@ class mac_admin::munki(
     ## Install the latest Munki
     include mac_admin::munki::munkitools
 
-    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin"]) {
         file { "${::puppet_vardir}/mac_admin":
             ensure => directory,
         }

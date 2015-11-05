@@ -18,7 +18,7 @@ class mac_admin::crypt(
     $crypturl = $mac_admin::params::crypturl,
     ) inherits mac_admin::params {
 
-    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin"]) {
         file { "${::puppet_vardir}/mac_admin":
             ensure => directory,
         }

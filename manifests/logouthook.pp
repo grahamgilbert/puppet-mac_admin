@@ -23,19 +23,19 @@ define mac_admin::logouthook(
     $priority = $mac_admin::params::hook_priority,
     ) {
     include mac_admin::params
-    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin"]) {
         file { "${::puppet_vardir}/mac_admin":
             ensure => directory,
         }
     }
 
-    if ! defined(File"${::puppet_vardir}/mac_admin/hooks"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin/hooks"]) {
         file { "${::puppet_vardir}/mac_admin/hooks":
             ensure => directory,
         }
     }
 
-    if ! defined(File"${::puppet_vardir}/mac_admin/hooks/logout"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin/hooks/logout"]) {
         file { "${::puppet_vardir}/mac_admin/hooks/logout":
             ensure => directory,
         }

@@ -27,13 +27,13 @@ define mac_admin::loginhook(
     $ensure   = 'present'
     ) {
     include mac_admin::params
-    if ! defined(File"${::puppet_vardir}/mac_admin/hooks"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin/hooks"]) {
         file { "${::puppet_vardir}/mac_admin/hooks":
             ensure => directory,
         }
     }
 
-    if ! defined(File"${::puppet_vardir}/mac_admin/hooks/login"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin/hooks/login"]) {
         file { "${::puppet_vardir}/mac_admin/hooks/login":
             ensure => directory,
         }

@@ -19,7 +19,7 @@ class mac_admin::macnamer(
     $key
     ) inherits mac_admin::params {
 
-    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+    if ! defined(File["${::puppet_vardir}/mac_admin"]) {
         file { "${::puppet_vardir}/mac_admin":
             ensure => directory,
         }
