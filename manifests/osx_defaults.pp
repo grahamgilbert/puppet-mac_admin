@@ -31,7 +31,7 @@ define mac_admin::osx_defaults(
         fail('Cannot ensure present without domain, key, and value attributes')
       }
 
-      if (($type == undef) and (($value == true) or ($value == false))) or ($type =~ /^bool/) {
+      if ((!$type) and (($value == true) or ($value == false))) or ($type =~ /^bool/) {
         $type_ = 'bool'
 
         $checkvalue = $value ? {
