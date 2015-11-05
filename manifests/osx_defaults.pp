@@ -39,6 +39,7 @@ define mac_admin::osx_defaults(
           'yes'   => '1',
           'false' => '0',
           'no'    => '0',
+          default => '1',
         }
 
       } else {
