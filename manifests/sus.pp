@@ -62,8 +62,8 @@ class mac_admin::sus(
         }
     }
 
-    if ! defined(File['/var/lib/puppet/mac_admin']) {
-        file { '/var/lib/puppet/mac_admin':
+    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+        file { "${::puppet_vardir}/mac_admin":
             ensure => directory,
         }
     }

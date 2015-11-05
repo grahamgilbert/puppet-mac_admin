@@ -27,26 +27,20 @@ define mac_admin::loginhook(
     $ensure   = 'present'
     ) {
     include mac_admin::params
-    if ! defined(File['/var/lib/puppet/mac_admin']) {
-      file { '/var/lib/puppet/mac_admin':
-        ensure => directory,
-      }
+    if ! defined(File"${::puppet_vardir}/mac_admin/hooks"]) {
+        file { "${::puppet_vardir}/mac_admin/hooks":
+            ensure => directory,
+        }
     }
 
-    if ! defined(File['/var/lib/puppet/mac_admin/hooks']) {
-      file { '/var/lib/puppet/mac_admin/hooks':
-        ensure => directory,
-      }
+    if ! defined(File"${::puppet_vardir}/mac_admin/hooks/login"]) {
+        file { "${::puppet_vardir}/mac_admin/hooks/login":
+            ensure => directory,
+        }
     }
 
-    if ! defined(File['/var/lib/puppet/mac_admin/hooks/login']) {
-      file { '/var/lib/puppet/mac_admin/hooks/login':
-        ensure => directory,
-      }
-    }
-
-    if ! defined(File['/var/lib/puppet/mac_admin/hooks/login_hook']) {
-        file {'/var/lib/puppet/mac_admin/hooks/login_hook':
+    if ! defined(File["${::puppet_vardir}/mac_admin/hooks/login_hook"]) {
+        file {"${::puppet_vardir}/mac_admin/hooks/login_hook":
             source  => 'puppet:///modules/mac_admin/hooks/login_hook',
             owner   => 0,
             group   => 0,
@@ -54,9 +48,8 @@ define mac_admin::loginhook(
         }
     }
 
-    file {"/var/lib/puppet/mac_admin/hooks/login/${priority}-${title}":
+    file {"${::puppet_vardir}/mac_admin/hooks/login/${priority}-${title}":
         source => $script,
-        ensure => $ensure,
         owner  => 0,
         group  => 0,
         mode   => '0755',

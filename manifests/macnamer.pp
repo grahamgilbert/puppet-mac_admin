@@ -19,10 +19,10 @@ class mac_admin::macnamer(
     $key
     ) inherits mac_admin::params {
 
-    if ! defined(File['/var/lib/puppet/mac_admin']) {
-      file { '/var/lib/puppet/mac_admin':
-        ensure => directory,
-      }
+    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+        file { "${::puppet_vardir}/mac_admin":
+            ensure => directory,
+        }
     }
 
     ##Write out the contents of the template to a mobileconfig file (this needs to be cleaned up)

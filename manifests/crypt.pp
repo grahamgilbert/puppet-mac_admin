@@ -18,14 +18,14 @@ class mac_admin::crypt(
     $crypturl = $mac_admin::params::crypturl,
     ) inherits mac_admin::params {
 
-    if ! defined(File['/var/lib/puppet/mac_admin']) {
-      file { '/var/lib/puppet/mac_admin':
-        ensure => directory,
-      }
+    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+        file { "${::puppet_vardir}/mac_admin":
+            ensure => directory,
+        }
     }
 
     ##Write out the contents of the template to a mobileconfig file (this needs to be cleaned up)
-    file {'/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig':
+    file {"${::puppet_vardir}/mac_admin/com.grahamgilbert.crypt.mobileconfig":
         content => template('mac_admin/com.grahamgilbert.crypt.erb'),
         owner   => 0,
         group   => 0,
@@ -36,6 +36,6 @@ class mac_admin::crypt(
     mac_profiles_handler::manage { 'com.grahamgilbert.crypt':
         ensure      => present,
         file_source => '/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig',
-        require     => File['/var/lib/puppet/mac_admin/com.grahamgilbert.crypt.mobileconfig']
+        require     => File["${puppet_vardir}/mac_admin/com.grahamgilbert.crypt.mobileconfig"]
     }
 }

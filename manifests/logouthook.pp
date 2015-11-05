@@ -23,26 +23,26 @@ define mac_admin::logouthook(
     $priority = $mac_admin::params::hook_priority,
     ) {
     include mac_admin::params
-    if ! defined(File['/var/lib/puppet/mac_admin']) {
-      file { '/var/lib/puppet/mac_admin':
-        ensure => directory,
-      }
+    if ! defined(File"${::puppet_vardir}/mac_admin"]) {
+        file { "${::puppet_vardir}/mac_admin":
+            ensure => directory,
+        }
     }
 
-    if ! defined(File['/var/lib/puppet/mac_admin/hooks']) {
-      file { '/var/lib/puppet/mac_admin/hooks':
-        ensure => directory,
-      }
+    if ! defined(File"${::puppet_vardir}/mac_admin/hooks"]) {
+        file { "${::puppet_vardir}/mac_admin/hooks":
+            ensure => directory,
+        }
     }
 
-    if ! defined(File['/var/lib/puppet/mac_admin/hooks/logout']) {
-      file { '/var/lib/puppet/mac_admin/hooks/logout':
-        ensure => directory,
-      }
+    if ! defined(File"${::puppet_vardir}/mac_admin/hooks/logout"]) {
+        file { "${::puppet_vardir}/mac_admin/hooks/logout":
+            ensure => directory,
+        }
     }
 
-    if ! defined(File['/var/lib/puppet/mac_admin/hooks/logout_hook']) {
-        file {'/var/lib/puppet/mac_admin/hooks/logout_hook':
+    if ! defined(File["${::puppet_vardir}/mac_admin/hooks/logout_hook"]) {
+        file {"${::puppet_vardir}/mac_admin/hooks/logout_hook":
             source  => 'puppet:///modules/mac_admin/hooks/logout_hook',
             owner   => 0,
             group   => 0,
@@ -50,14 +50,14 @@ define mac_admin::logouthook(
         }
     }
 
-    file {"/var/lib/puppet/mac_admin/hooks/logout/${priority}-${title}":
+    file {"${::puppet_vardir}/mac_admin/hooks/logout/${priority}-${title}":
         source => $script,
         owner  => 0,
         group  => 0,
         mode   => '0755',
     }
 
-    if ! defined(Mac_admin::Osx_defaukts['mac_admin-logouthook']){
+    if ! defined(Mac_admin::Osx_defaults['mac_admin-logouthook']){
          mac_admin::osx_defaults { 'mac_admin-logouthook':
             ensure => present,
             domain => '/var/root/Library/Preferences/com.apple.loginwindow',
