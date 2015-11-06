@@ -8,10 +8,11 @@
 #
 
 class mac_admin::login_window_hostname(
+    $ensure = 'present'
 ) inherits mac_admin::params {
     ##Install the profile
     mac_profiles_handler::manage { 'com.grahamgilbert.login_window_hostname':
-        ensure      => present,
+        ensure      => $ensure,
         file_source => 'puppet:///modules/mac_admin/login_window_hostname/com.grahamgilbert.login_window_hostname.mobileconfig',
     }
 }
