@@ -5,7 +5,7 @@ Facter.add(:mac_munki_version_short) do
     if File.exist?('/usr/local/munki/managedsoftwareupdate')
         fullver = Facter::Util::Resolution.exec("/usr/local/munki/managedsoftwareupdate --version")
         splitsting = fullver.split(".")
-        splitsting[0]+"."+splitsting[1]+"."splitsting[2]
+        splitsting[0]+"."+splitsting[1]+"."+splitsting[2]
     else
         "Munki not installed"
     end
