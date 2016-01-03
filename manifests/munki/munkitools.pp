@@ -1,6 +1,6 @@
 class mac_admin::munki::munkitools {
 
-    if $::mac_munki_version < "2.2.4.2431" {
+    if ($::mac_munki_version < "2.2.4.2431") or ($::mac_munki_version == "Munki not installed") {
         package { 'munki_tools2':
             ensure   => installed,
             provider => pkgdmg,
