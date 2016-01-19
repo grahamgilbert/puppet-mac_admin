@@ -49,6 +49,7 @@ define mac_admin::loginhook(
     }
 
     file {"${::puppet_vardir}/mac_admin/hooks/login/${priority}-${title}":
+        ensure => $ensure,
         source => $script,
         owner  => 0,
         group  => 0,
