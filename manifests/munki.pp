@@ -61,7 +61,4 @@ class mac_admin::munki(
         type        => 'template'
     }
 
-
-
-    class { 'mac_admin::munki::conditions': }
 }
