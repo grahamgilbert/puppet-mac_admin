@@ -43,6 +43,7 @@ class mac_admin::munki(
     $catalogurl = $mac_admin::params::catalogurl,
     $manifesturl = $mac_admin::params::manifesturl,
     $additionalhttpheaders = $mac_admin::params::additionalhttpheaders,
+    $unattendedappleupdates = false,
     ) inherits mac_admin::params {
 
     ## Install the latest Munki
