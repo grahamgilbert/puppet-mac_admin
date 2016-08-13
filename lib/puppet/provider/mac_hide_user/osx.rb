@@ -1,7 +1,7 @@
 Puppet::Type.type(:mac_hide_user).provide(:osx) do
   desc "Hides the user from the login window specified in the namevar"
   confine :operatingsystem => :darwin
-  confine :macosx_productversion_major => ["10.10", "10.11"]
+  confine :macosx_productversion_major => ["10.10", "10.11", "10.12"]
 
   defaultfor :operatingsystem => :darwin
 
